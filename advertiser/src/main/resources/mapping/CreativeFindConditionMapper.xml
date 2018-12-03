@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.juzuan.advertiser.rpts.mapper.CreativeFindConditionMapper" >
+  <resultMap id="BaseResultMap" type="com.juzuan.advertiser.rpts.model.CreativeFindCondition" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="creative_cat" property="creativeCat" jdbcType="VARCHAR" />
+    <result column="creative_format_list" property="creativeFormatList" jdbcType="VARCHAR" />
+    <result column="creative_level_list" property="creativeLevelList" jdbcType="BIGINT" />
+    <result column="creative_status_list" property="creativeStatusList" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, creative_cat, creative_format_list, creative_level_list, creative_status_list
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from creative_find_condition
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAllCondition" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from creative_find_condition
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from creative_find_condition
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.juzuan.advertiser.rpts.model.CreativeFindCondition" >
+    insert into creative_find_condition (id, creative_cat, creative_format_list, 
+      creative_level_list, creative_status_list)
+    values (#{id,jdbcType=INTEGER}, #{creativeCat,jdbcType=VARCHAR}, #{creativeFormatList,jdbcType=VARCHAR}, 
+      #{creativeLevelList,jdbcType=BIGINT}, #{creativeStatusList,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.juzuan.advertiser.rpts.model.CreativeFindCondition" >
+    insert into creative_find_condition
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="creativeCat != null" >
+        creative_cat,
+      </if>
+      <if test="creativeFormatList != null" >
+        creative_format_list,
+      </if>
+      <if test="creativeLevelList != null" >
+        creative_level_list,
+      </if>
+      <if test="creativeStatusList != null" >
+        creative_status_list,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="creativeCat != null" >
+        #{creativeCat,jdbcType=VARCHAR},
+      </if>
+      <if test="creativeFormatList != null" >
+        #{creativeFormatList,jdbcType=VARCHAR},
+      </if>
+      <if test="creativeLevelList != null" >
+        #{creativeLevelList,jdbcType=BIGINT},
+      </if>
+      <if test="creativeStatusList != null" >
+        #{creativeStatusList,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.juzuan.advertiser.rpts.model.CreativeFindCondition" >
+    update creative_find_condition
+    <set >
+      <if test="creativeCat != null" >
+        creative_cat = #{creativeCat,jdbcType=VARCHAR},
+      </if>
+      <if test="creativeFormatList != null" >
+        creative_format_list = #{creativeFormatList,jdbcType=VARCHAR},
+      </if>
+      <if test="creativeLevelList != null" >
+        creative_level_list = #{creativeLevelList,jdbcType=BIGINT},
+      </if>
+      <if test="creativeStatusList != null" >
+        creative_status_list = #{creativeStatusList,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.juzuan.advertiser.rpts.model.CreativeFindCondition" >
+    update creative_find_condition
+    set creative_cat = #{creativeCat,jdbcType=VARCHAR},
+      creative_format_list = #{creativeFormatList,jdbcType=VARCHAR},
+      creative_level_list = #{creativeLevelList,jdbcType=BIGINT},
+      creative_status_list = #{creativeStatusList,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

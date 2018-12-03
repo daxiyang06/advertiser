@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.juzuan.advertiser.rpts.mapper.IndustryshopListMapper" >
+  <resultMap id="BaseResultMap" type="com.juzuan.advertiser.rpts.model.IndustryshopList" >
+    <id column="industry_shop_id" property="industryShopId" jdbcType="VARCHAR" />
+    <result column="industry_shop_name" property="industryShopName" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    industry_shop_id, industry_shop_name
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from target_industryshop_list
+    where industry_shop_id = #{industryShopId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from target_industryshop_list
+    where industry_shop_id = #{industryShopId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.juzuan.advertiser.rpts.model.IndustryshopList" >
+    insert into target_industryshop_list (industry_shop_id, industry_shop_name)
+    values (#{industryShopId,jdbcType=VARCHAR}, #{industryShopName,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.juzuan.advertiser.rpts.model.IndustryshopList" >
+    insert into target_industryshop_list
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="industryShopId != null" >
+        industry_shop_id,
+      </if>
+      <if test="industryShopName != null" >
+        industry_shop_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="industryShopId != null" >
+        #{industryShopId,jdbcType=VARCHAR},
+      </if>
+      <if test="industryShopName != null" >
+        #{industryShopName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.juzuan.advertiser.rpts.model.IndustryshopList" >
+    update target_industryshop_list
+    <set >
+      <if test="industryShopName != null" >
+        industry_shop_name = #{industryShopName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where industry_shop_id = #{industryShopId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.juzuan.advertiser.rpts.model.IndustryshopList" >
+    update target_industryshop_list
+    set industry_shop_name = #{industryShopName,jdbcType=VARCHAR}
+    where industry_shop_id = #{industryShopId,jdbcType=VARCHAR}
+  </update>
+</mapper>
