@@ -34,7 +34,7 @@ public class CreativeListBindServiceImpl implements CreativeListBindService {
     @Autowired
     private CreativeListBindMapper creativeListBindMapper;
 
-    //@Scheduled(cron = "*/5 * * * * ?")
+    @Scheduled(cron = "*/5 * * * * ?")
     public String CreativeListBind(){
         List<AdgroupList> adgroupLists = adgroupListMapper.selectAllAdgroup();
         for (AdgroupList al: adgroupLists) {
@@ -74,7 +74,7 @@ public class CreativeListBindServiceImpl implements CreativeListBindService {
                     clb.setCampaignId(al.getCampaignId());
                     clb.setAdgroupId(al.getAdgroupId());
                     clb.setCreativeId(ctv.getLong("id"));
-                    clb.setCreativeName(ctv.getString("creative_name")==null?"0":ctv.getString("creative_name"));
+                    clb.setCreativeName(ctv.getString("name"));
                     clb.setAuditStatus(ctv.getInteger("audit_status"));
                     clb.setCatId(ctv.getString("cat_id"));
                     clb.setCatName(ctv.getString("cat_name"));
@@ -89,7 +89,7 @@ public class CreativeListBindServiceImpl implements CreativeListBindService {
                     clb.setModifiedTime(ctv.getDate("modified_time"));
                     clb.setImagePath(ctv.getString("image_path"));
                     clb.setPackageType(ctv.getInteger("package_type"));
-                    //creativeListBindMapper.insert(clb);
+                    creativeListBindMapper.insert(clb);
                 }
             }
         }

@@ -34,7 +34,7 @@ public class AdgroupRptsDayGetServiceImpl implements AdgroupRptsDayGetService {
     @Autowired
     private AdgroupRptsDayGetMapper adgroupRptsDayGetMapper;
 
-    @Scheduled(cron = "*/5 * * * * ?")
+    //@Scheduled(cron = "*/5 * * * * ?")
     public String AdgroupRptsDayGet() throws ApiException {
         List<AdgroupList> cam = adgroupListMapper.selectAllAdgroup();
         for (AdgroupList ad : cam) {
